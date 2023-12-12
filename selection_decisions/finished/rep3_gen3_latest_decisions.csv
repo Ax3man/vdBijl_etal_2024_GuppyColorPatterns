@@ -1,0 +1,25 @@
+date,fish_id,car_perc,decisions
+20220201,m3-412,11.76,sacrifice
+20220207,m3-445,11.82,sacrifice
+20220401,m3-694,3.56,sacrifice
+20220401,m3-708,11.68,sacrifice
+20220404,m3-713,3.86,sacrifice
+20220404,m3-714,5.19,sacrifice
+20220404,m3-715,5.18,sacrifice
+20220404,m3-716,5.87,sacrifice
+20220404,m3-717,6.78,sacrifice
+20220404,m3-718,6.98,sacrifice
+20220404,m3-719,4.98,sacrifice
+20220404,m3-720,4.02,sacrifice
+20220404,m3-721,11.47,sacrifice
+20220404,m3-722,9.73,sacrifice
+20220404,m3-724,19.26,move to up
+20220404,m3-725,11.52,sacrifice
+20220404,m3-726,9.87,sacrifice
+20220404,m3-727,5.69,sacrifice
+20220404,m3-728,6.81,sacrifice
+20220404,m3-729,4.1,sacrifice
+20220404,m3-730,2.78,move to down
+20220404,m3-731,16.93,move to up
+20220404,m3-732,13.92,sacrifice
+20220404,m3-733,14.78,move to up

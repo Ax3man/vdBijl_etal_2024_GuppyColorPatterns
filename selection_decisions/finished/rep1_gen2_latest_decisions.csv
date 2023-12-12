@@ -1,0 +1,13 @@
+date,fish_id,car_perc,decisions
+20210106,m1-200,4.81,sacrifice
+20210304,m1-383,11.15,sacrifice
+20210310,m1-434,4.86,sacrifice
+20210315,m1-440,6.69,sacrifice
+20210315,m1-441,9.66,sacrifice
+20210315,m1-442,13.79,move to up
+20210315,m1-443,5.6,sacrifice
+20210315,m1-444,10.27,sacrifice
+20210315,m1-445,2.21,move to down
+20210315,m1-446,5.84,sacrifice
+20210315,m1-447,4.25,move to down
+20210315,m1-448,7.13,sacrifice

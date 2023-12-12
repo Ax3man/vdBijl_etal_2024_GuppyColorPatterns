@@ -1,0 +1,272 @@
+date,fish_id,selection,car_perc,decisions
+20220407,m1-843,down_selected,1.94,sample for sequencing
+20220407,m1-844,down_selected,3.24,stock breeder
+20220407,m1-845,up_selected,12.35,sample for sequencing
+20220407,m1-846,up_selected,10.58,stock breeder
+20220407,m1-847,up_selected,11.07,stock breeder
+20220407,m1-848,up_selected,12.52,sample for sequencing
+20220407,m1-849,up_selected,9.89,stock breeder
+20220407,m1-850,up_selected,5.88,sacrifice
+20220407,m1-851,up_selected,9.81,sacrifice
+20220407,m1-852,down_selected,7.95,sacrifice
+20220407,m1-853,down_selected,5.66,sample for sequencing
+20220407,m1-854,down_selected,7.51,sample for sequencing
+20220411,m1-855,up_selected,7.48,sample for sequencing
+20220411,m1-856,up_selected,17.19,sample for sequencing
+20220411,m1-857,up_selected,7.45,stock breeder
+20220413,m1-858,down_selected,8.31,sacrifice
+20220413,m1-859,down_selected,5.9,sample for sequencing
+20220419,m1-860,up_selected,7.78,stock breeder
+20220419,m1-862,up_selected,11.45,stock breeder
+20220419,m1-863,up_selected,7.08,sacrifice
+20220419,m1-864,up_selected,9.85,sample for sequencing
+20220419,m1-865,up_selected,10.86,sample for sequencing
+20220426,m1-866,down_selected,2.55,sample for sequencing
+20220426,m1-867,down_selected,5.65,sacrifice
+20220426,m1-868,down_selected,3.35,stock breeder
+20220426,m1-869,down_selected,11.47,sample for sequencing
+20220426,m1-870,down_selected,7.14,sample for sequencing
+20220426,m1-871,up_selected,6.15,sacrifice
+20220426,m1-872,up_selected,4.66,sacrifice
+20220426,m1-873,up_selected,7.36,sample for sequencing
+20220426,m1-874,up_selected,8.89,sample for sequencing
+20220427,m1-875,up_selected,11.99,sample for sequencing
+20220427,m1-876,up_selected,10.88,sample for sequencing
+20220427,m1-877,down_selected,5.23,stock breeder
+20220427,m1-878,down_selected,6.09,stock breeder
+20220427,m1-879,down_selected,6.03,stock breeder
+20220427,m1-880,down_selected,5.71,sample for sequencing
+20220427,m1-881,down_selected,6.52,stock breeder
+20220427,m1-882,down_selected,6.47,sample for sequencing
+20220427,m1-883,down_selected,6.81,sacrifice
+20220427,m1-884,up_selected,9.39,sacrifice
+20220427,m1-885,up_selected,10.62,stock breeder
+20220427,m1-886,down_selected,3.76,stock breeder
+20220427,m1-887,down_selected,2.24,sample for sequencing
+20220427,m1-888,down_selected,3.65,sample for sequencing
+20220427,m1-889,down_selected,2.73,sample for sequencing
+20220429,m1-890,up_selected,8.37,stock breeder
+20220429,m1-891,up_selected,4.99,sacrifice
+20220429,m1-892,up_selected,5.88,sacrifice
+20220429,m1-893,up_selected,8.78,sample for sequencing
+20220429,m1-894,down_selected,6.1,sample for sequencing
+20220429,m1-895,down_selected,6.56,sample for sequencing
+20220502,m1-896,up_selected,10.91,sample for sequencing
+20220502,m1-897,up_selected,7.99,stock breeder
+20220502,m1-898,up_selected,11.23,sample for sequencing
+20220502,m1-899,up_selected,8.43,sample for sequencing
+20220502,m1-900,up_selected,5.67,sacrifice
+20220502,m1-901,up_selected,13.79,stock breeder
+20220502,m1-902,up_selected,11.12,stock breeder
+20220502,m1-903,up_selected,8.77,sacrifice
+20220502,m1-904,up_selected,9.04,sacrifice
+20220502,m1-905,up_selected,15.89,stock breeder
+20220502,m1-906,up_selected,11.03,sacrifice
+20220502,m1-907,up_selected,17.84,sample for sequencing
+20220502,m1-908,up_selected,8.97,stock breeder
+20220502,m1-909,up_selected,10.25,sample for sequencing
+20220502,m1-910,up_selected,11.44,sample for sequencing
+20220502,m1-911,up_selected,15.39,stock breeder
+20220502,m1-912,up_selected,19.61,sample for sequencing
+20220502,m1-913,up_selected,16.96,stock breeder
+20220503,m1-914,down_selected,2.49,sample for sequencing
+20220503,m1-915,down_selected,4.7,sample for sequencing
+20220503,m1-916,up_selected,8.22,stock breeder
+20220503,m1-917,up_selected,8.77,sample for sequencing
+20220503,m1-918,up_selected,15.21,sample for sequencing
+20220503,m1-919,up_selected,14.25,stock breeder
+20220503,m1-920,up_selected,7.91,sacrifice
+20220503,m1-921,up_selected,12.93,stock breeder
+20220503,m1-922,up_selected,7.75,sacrifice
+20220503,m1-923,up_selected,15.79,sample for sequencing
+20220503,m1-924,up_selected,13.33,sample for sequencing
+20220503,m1-925,up_selected,6.67,sacrifice
+20220503,m1-926,up_selected,12.42,stock breeder
+20220503,m1-927,up_selected,7.71,stock breeder
+20220503,m1-928,up_selected,7.61,stock breeder
+20220503,m1-929,up_selected,12.51,sample for sequencing
+20220506,m1-930,down_selected,4.48,sample for sequencing
+20220506,m1-931,down_selected,8.9,sacrifice
+20220506,m1-932,down_selected,7.12,sacrifice
+20220506,m1-933,down_selected,9.1,sacrifice
+20220506,m1-934,down_selected,4.79,sample for sequencing
+20220506,m1-935,down_selected,5.74,stock breeder
+20220506,m1-936,down_selected,5.61,sample for sequencing
+20220506,m1-937,down_selected,6.63,stock breeder
+20220506,m1-938,down_selected,5.56,sample for sequencing
+20220509,m1-939,up_selected,7.69,stock breeder
+20220509,m1-940,up_selected,8.29,sample for sequencing
+20220509,m1-941,up_selected,6.98,sacrifice
+20220509,m1-942,up_selected,11.03,sample for sequencing
+20220509,m1-943,up_selected,5.41,sacrifice
+20220509,m1-944,up_selected,5.12,sacrifice
+20220509,m1-945,up_selected,6.52,sacrifice
+20220509,m1-946,down_selected,2.32,sample for sequencing
+20220509,m1-947,down_selected,4.36,sample for sequencing
+20220509,m1-948,down_selected,4.44,stock breeder
+20220510,m1-949,down_selected,3.26,sample for sequencing
+20220510,m1-950,down_selected,3.83,stock breeder
+20220510,m1-951,down_selected,7.12,sacrifice
+20220510,m1-952,down_selected,2.91,sample for sequencing
+20220510,m1-953,up_selected,7.79,sample for sequencing
+20220511,m1-954,up_selected,6.68,sample for sequencing
+20220511,m1-955,up_selected,7.54,sample for sequencing
+20220511,m1-956,up_selected,5.36,sacrifice
+20220511,m1-957,up_selected,6.44,sacrifice
+20220511,m1-958,up_selected,10.97,sample for sequencing
+20220511,m1-959,up_selected,5.88,sacrifice
+20220511,m1-960,up_selected,6.13,sacrifice
+20220511,m1-961,up_selected,6.41,sacrifice
+20220511,m1-962,up_selected,5.82,sacrifice
+20220511,m1-963,up_selected,10.03,sample for sequencing
+20220511,m1-964,down_selected,5.33,sample for sequencing
+20220511,m1-965,down_selected,8,sacrifice
+20220511,m1-966,down_selected,2.73,sample for sequencing
+20220511,m1-967,down_selected,4.09,stock breeder
+20220511,m1-968,down_selected,3.87,sample for sequencing
+20220511,m1-969,down_selected,4.84,stock breeder
+20220511,m1-970,down_selected,5.38,stock breeder
+20220511,m1-971,down_selected,3.7,sample for sequencing
+20220512,m1-972,up_selected,5.23,sample for sequencing
+20220512,m1-973,up_selected,10.17,sample for sequencing
+20220512,m1-974,up_selected,8.32,sample for sequencing
+20220512,m1-975,down_selected,5.39,stock breeder
+20220512,m1-976,down_selected,5.13,sample for sequencing
+20220512,m1-977,down_selected,6.21,sacrifice
+20220512,m1-978,down_selected,5.36,stock breeder
+20220512,m1-979,down_selected,4.63,sample for sequencing
+20220512,m1-980,down_selected,6.36,sacrifice
+20220512,m1-981,down_selected,5.72,stock breeder
+20220512,m1-982,down_selected,2.98,sample for sequencing
+20220512,m1-983,down_selected,5.36,sample for sequencing
+20220512,m1-984,down_selected,3.14,stock breeder
+20220512,m1-985,down_selected,3.84,stock breeder
+20220512,m1-986,down_selected,2.64,sample for sequencing
+20220512,m1-987,down_selected,3.53,stock breeder
+20220512,m1-988,up_selected,7.32,sacrifice
+20220512,m1-989,up_selected,8.31,stock breeder
+20220512,m1-990,up_selected,10.14,sample for sequencing
+20220512,m1-991,up_selected,10.22,sample for sequencing
+20220513,m1-1000,up_selected,11.42,stock breeder
+20220513,m1-1001,up_selected,6.95,sacrifice
+20220513,m1-1002,down_selected,3.49,sample for sequencing
+20220513,m1-1003,down_selected,3.69,sample for sequencing
+20220513,m1-1004,down_selected,3.91,stock breeder
+20220513,m1-1005,down_selected,4.17,stock breeder
+20220513,m1-1006,down_selected,3.24,stock breeder
+20220513,m1-1007,down_selected,1.68,sample for sequencing
+20220513,m1-1008,down_selected,5.3,stock breeder
+20220513,m1-1009,down_selected,4.01,sample for sequencing
+20220513,m1-1010,down_selected,12.31,sacrifice
+20220513,m1-1011,down_selected,7.19,sacrifice
+20220513,m1-1012,down_selected,6.9,sacrifice
+20220513,m1-1013,down_selected,5.78,sample for sequencing
+20220513,m1-1014,up_selected,9.02,sample for sequencing
+20220513,m1-1015,up_selected,15.56,sample for sequencing
+20220513,m1-992,down_selected,4.41,stock breeder
+20220513,m1-993,down_selected,2.55,sample for sequencing
+20220513,m1-994,down_selected,3.12,stock breeder
+20220513,m1-995,up_selected,10.67,stock breeder
+20220513,m1-996,up_selected,7.45,sacrifice
+20220513,m1-997,up_selected,13.14,stock breeder
+20220513,m1-998,up_selected,7.24,sacrifice
+20220513,m1-999,up_selected,14.05,sample for sequencing
+20220516,m1-1016,up_selected,19.45,sample for sequencing
+20220516,m1-1017,up_selected,10.13,stock breeder
+20220516,m1-1018,up_selected,13.25,stock breeder
+20220516,m1-1019,up_selected,6.95,sacrifice
+20220516,m1-1020,up_selected,10.34,sample for sequencing
+20220516,m1-1021,up_selected,10.13,sample for sequencing
+20220516,m1-1022,up_selected,10.33,sample for sequencing
+20220516,m1-1023,up_selected,7.67,sacrifice
+20220516,m1-1024,up_selected,8.97,sample for sequencing
+20220516,m1-1025,down_selected,6.9,sample for sequencing
+20220517,m1-1026,up_selected,7.18,stock breeder
+20220517,m1-1027,up_selected,19.75,sample for sequencing
+20220517,m1-1028,up_selected,8.06,sample for sequencing
+20220517,m1-1029,up_selected,7.9,sample for sequencing
+20220517,m1-1030,down_selected,5.64,sample for sequencing
+20220517,m1-1031,down_selected,3.02,sample for sequencing
+20220517,m1-1032,down_selected,5.82,stock breeder
+20220517,m1-1033,up_selected,11.69,sample for sequencing
+20220517,m1-1034,up_selected,10.16,sample for sequencing
+20220517,m1-1035,up_selected,9.5,stock breeder
+20220517,m1-1036,down_selected,3.76,stock breeder
+20220517,m1-1037,down_selected,4.89,sacrifice
+20220517,m1-1038,down_selected,3.09,stock breeder
+20220517,m1-1039,down_selected,4.55,sacrifice
+20220517,m1-1040,down_selected,6.55,sample for sequencing
+20220517,m1-1041,down_selected,13.61,sacrifice
+20220517,m1-1042,down_selected,4.77,sample for sequencing
+20220517,m1-1043,down_selected,11.24,sacrifice
+20220517,m1-1044,down_selected,7.53,sacrifice
+20220518,m1-1045,down_selected,6.77,sacrifice
+20220518,m1-1046,down_selected,5.2,stock breeder
+20220518,m1-1047,down_selected,5.9,sacrifice
+20220518,m1-1048,down_selected,3.96,sample for sequencing
+20220518,m1-1049,down_selected,4.61,stock breeder
+20220518,m1-1050,down_selected,5.68,stock breeder
+20220518,m1-1051,down_selected,4.57,sample for sequencing
+20220518,m1-1052,down_selected,12.2,sacrifice
+20220518,m1-1053,down_selected,5.66,sample for sequencing
+20220518,m1-1054,down_selected,11.63,sacrifice
+20220518,m1-1055,down_selected,3.72,sample for sequencing
+20220518,m1-1056,down_selected,6.96,sacrifice
+20220519,m1-1057,up_selected,13.57,sample for sequencing
+20220519,m1-1058,up_selected,10.01,stock breeder
+20220519,m1-1059,down_selected,8.07,sacrifice
+20220519,m1-1060,down_selected,9.45,sacrifice
+20220519,m1-1061,down_selected,7.69,sample for sequencing
+20220519,m1-1062,down_selected,4.8,sample for sequencing
+20220519,m1-1063,down_selected,4.94,sacrifice
+20220519,m1-1064,down_selected,4.91,stock breeder
+20220519,m1-1065,down_selected,4.13,sample for sequencing
+20220519,m1-1066,up_selected,21.85,sample for sequencing
+20220519,m1-1067,up_selected,9.65,sacrifice
+20220519,m1-1068,up_selected,9.93,stock breeder
+20220524,m1-1069,down_selected,7.45,sample for sequencing
+20220524,m1-1070,down_selected,11.69,sample for sequencing
+20220524,m1-1071,up_selected,18.44,sample for sequencing
+20220524,m1-1072,up_selected,11.82,stock breeder
+20220524,m1-1073,up_selected,12.62,stock breeder
+20220524,m1-1074,up_selected,13.18,sample for sequencing
+20220524,m1-1075,up_selected,5.06,sacrifice
+20220524,m1-1076,up_selected,6.21,sacrifice
+20220524,m1-1077,down_selected,7.42,sample for sequencing
+20220524,m1-1078,down_selected,5.66,sample for sequencing
+20220524,m1-1079,down_selected,11.37,sacrifice
+20220524,m1-1080,down_selected,2.9,stock breeder
+20220524,m1-1081,down_selected,3.95,stock breeder
+20220524,m1-1082,down_selected,5.94,sacrifice
+20220524,m1-1083,down_selected,4.09,stock breeder
+20220526,m1-1084,up_selected,8.91,stock breeder
+20220526,m1-1085,up_selected,12.07,sample for sequencing
+20220526,m1-1086,up_selected,8.02,stock breeder
+20220526,m1-1087,up_selected,9.21,stock breeder
+20220526,m1-1088,up_selected,5.95,sacrifice
+20220526,m1-1089,down_selected,7.68,sacrifice
+20220526,m1-1090,down_selected,8.01,sacrifice
+20220526,m1-1091,down_selected,6.37,sacrifice
+20220526,m1-1092,down_selected,5.42,stock breeder
+20220526,m1-1093,down_selected,3.61,sample for sequencing
+20220526,m1-1094,down_selected,2.59,sample for sequencing
+20220526,m1-1095,up_selected,5.66,sacrifice
+20220526,m1-1096,up_selected,9.73,sample for sequencing
+20220526,m1-1097,up_selected,9.73,sacrifice
+20220526,m1-1098,up_selected,10.35,sample for sequencing
+20220526,m1-1099,up_selected,13.38,sample for sequencing
+20220526,m1-1100,up_selected,15.87,sample for sequencing
+20220526,m1-1101,down_selected,6.36,stock breeder
+20220526,m1-1102,down_selected,7.71,sacrifice
+20220526,m1-1103,down_selected,3.79,sample for sequencing
+20220526,m1-1104,down_selected,5.56,stock breeder
+20220526,m1-1105,down_selected,3.03,stock breeder
+20220526,m1-1106,up_selected,10.75,stock breeder
+20220526,m1-1107,up_selected,6.53,sacrifice
+20220526,m1-1108,up_selected,15.62,stock breeder
+20220526,m1-1109,up_selected,8.53,stock breeder
+20220526,m1-1110,up_selected,15.96,sample for sequencing
+20220526,m1-1111,down_selected,4.92,sample for sequencing
+20220526,m1-1112,down_selected,5.15,sample for sequencing
+20220526,m1-1113,up_selected,15.04,sample for sequencing
+20220526,m1-1114,up_selected,12.15,sample for sequencing
