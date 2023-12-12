@@ -1,0 +1,61 @@
+library(patchwork)
+
+# Paper: The width of figures, when printed, will usually be 5.7 cm (2.24 inches or 1 column), 12.1
+# cm (4.76 inches or 2 columns), or 18.4 cm (7.24 inches or 3 columns). Bar graphs, simple line
+# graphs, and gels may be reduced to a smaller width. Symbols and lettering should be large enough
+# to be legible after reduction [a reduced size of about 7 points (2.5 mm) high, and not smaller
+# than 5 points]. Avoid wide variation in type size within a single figure. In laying out
+# information in a figure, the objective is to maximize the space given to presentation of the data.
+# Avoid wasted white space and clutter.
+
+source('paper_figures/subplots/1_phenotyping_pipeline.R')
+source('paper_figures/subplots/1_random_patrilines.R')
+source('paper_figures/subplots/1_population_incidence_heatmaps.R')
+fig1A <- wrap_elements(full = phenotyping_pipeline + labs(tag = 'A'))
+fig1B <- ((example_patrilines + labs(tag = 'B')) | pop_incidence_heatmaps) + plot_layout(widths = c(4, 3))
+fig1 <- (fig1A / fig1B) + plot_layout(heights = c(1, 2.2))
+ggsave('paper_figures/Fig1.png', fig1, units = 'cm', width = 18.4, height = 9)
+
+source('paper_figures/subplots/car_pedigree.R')
+source('paper_figures/subplots/car_selection_maps.R')
+
+wrap_elements(full = P_car_pedigree) +
+  wrap_elements(full = P_car_selmap) +
+  plot_annotation(tag_levels = 'A')# +
+  #plot_layout(widths = c(4, 3))
+ggsave('paper_figures/Fig2.png', units = "cm", width = 18.4, height = 8)
+
+source('paper_figures/subplots/car_pixel_h2.R')
+source('paper_figures/subplots/mel_pixel_h2.R')
+
+Fig3 <- (
+  (P_car_pixel_h2) +
+  (P_mel_pixel_h2 + theme(strip.text.y.left = element_blank())) &
+  theme(legend.position = 'bottom')
+) +
+  plot_annotation(tag_levels = 'A') +
+  plot_layout(guides = 'collect')
+ggsave('paper_figures/Fig3.png', Fig3, units = "cm", width = 12.1, height = 7)
+
+source('paper_figures/subplots/car_ornament_img.R')
+source('paper_figures/subplots/car_ornament_presence_size.R')
+source('paper_figures/subplots/car_ornament_h2.R')
+source('paper_figures/subplots/car_ornament_embedding.R')
+
+Fig4 <- (P_car_orn_img) /
+  (P_car_orn_h2 + theme(legend.position = 'right', legend.justification = c(0, 0.5))) /
+  (P_car_orn_pres + theme(legend.position = 'right', legend.justification = c(0, 0))) /
+  P_car_orn_size /
+  (P_car_orn_emb + theme(legend.position = 'right', legend.justification = c(0, 0.5))) /
+  plot_annotation(tag_levels = 'A') +
+  plot_layout(heights = c(0.8, 2, 2, 2, 3))
+ggsave('paper_figures/Fig4.png', Fig4, units = "cm", width = 18.4, height = 11)
+
+source('paper_figures/subplots/6A.R')
+source('paper_figures/subplots/6B.R')
+source('paper_figures/subplots/6C.R')
+Fig6 <- (Fig6A + plot_annotation(tag_levels = c('A')) & theme(legend.position = 'none')) |
+  (Fig6B & theme(legend.position = 'none')) |
+  (Fig6C)
+
+ggsave('paper_figures/Fig6.png', Fig6, units = 'cm', width = 18.4, height = 12)
