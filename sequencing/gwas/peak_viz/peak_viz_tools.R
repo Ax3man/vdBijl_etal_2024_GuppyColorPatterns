@@ -1,8 +1,5 @@
 get_gwas_results <- function(trait, chr, pos, viz_range, fdr.level, pval_column = 'p_SHet') {
   gwas <- data.table::fread(glue::glue('sequencing/gwas/gemma_output/{trait}.assoc.txt'))
-  # q <- qvalue::qvalue(gwas[[pval_column]], fdr.level = fdr.level, pi0 = 1)
-  # gwas$qvalue <- q$qvalues
-  # gwas$significant <- q$significant
 
   filter(
     gwas,
@@ -91,6 +88,8 @@ get_region_coverage <- function(chr, pos, viz_range) {
 }
 
 get_GRM <- function(vcf = 'sequencing/gwas/filtered.vcf.gz') {
+  require(VariantAnnotation)
+
   sample_names <- readVcf(vcf, param = ScanVcfParam(which = GRanges("NC_024331.1", IRanges(24115677)))) %>%
     colData() %>% rownames()
 
