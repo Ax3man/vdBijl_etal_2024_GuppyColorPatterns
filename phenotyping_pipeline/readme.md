@@ -6,7 +6,7 @@ editor_options:
 
 # The phenotyping pipeline
 
-This folder contains the scripts used to ingest, annotate and transform the guppy photos. It just includes to code to build and run the pipeline itself, not the code to train to neural nets that are used in the pipeline.
+This folder contains the scripts used to ingest, annotate and transform the guppy photos. The code used to actually train the deep learning models used in the pipeline can be found within the `phenotyping_models/` folder. The rest of the files here contain the code to build and run the pipeline itself.
 
 `new_photo_intake.R` was ran to detect newly added photos, run all the pipeline components on those new photos, add them to the database, and generate data files.
 
