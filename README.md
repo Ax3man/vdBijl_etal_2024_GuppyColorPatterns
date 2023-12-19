@@ -1,6 +1,6 @@
 # vdBijl_etal_2024_GuppyColorPatterns
 
-This is the code repository that goes with the following (yet to published) paper:
+This is the code repository that goes with the following [preprint](https://doi.org/10.1101/2023.09.29.560175):
 
 > Wouter van der Bijl, Jacelyn Shu, Versara S. Goberdhan, Linley Sherin, Maria Cortazar-Chinarro, Alberto Corral-Lopez, Judith E. Mank.
 > 
