@@ -6,7 +6,7 @@ This is the code repository that goes with the following (yet to published) pape
 > 
 > Deep learning reveals the role of copy number variation in the genetic architecture of a highly polymorphic sexual trait.
 
-![Fig1](paper_figures/Fig2.png)
+![animation](color_patterns.gif)
 
 Any questions and comments about this repository can be addressed to me, Wouter van der Bijl, wouter[at]mail.ubc.ca.
 
@@ -31,3 +31,4 @@ Some general comments about names and data that may be useful for re-use:
 - I needed two attempts at getting black phenotypes with low measurement error. This is why there is sometimes both a `mel` and `mel_v2`. Use the second version.
 - Use data loaders when possible, such as `quant_gen/prepare_pedigrees.R`, `selection_decisions/compile_decisions.R`, and the functions and loaders in `sequencing/genomics_helpers.R` and `sequencing/gwas/peak_viz/peak_viz_tools.R`.
  
+![Fig1](paper_figures/Fig2.png)
