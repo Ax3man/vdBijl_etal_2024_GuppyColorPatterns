@@ -53,4 +53,3 @@ panelB <- (
 )
 
 Fig5 <- (panelA / panelB) + plot_layout(heights = c(1, 2))
-ggsave('paper_figures/Fig5.png', Fig5, width = 18.4, height = 12, units = 'cm', dpi = 600)

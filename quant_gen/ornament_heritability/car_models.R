@@ -39,8 +39,9 @@ fit_ornament_hurdle <- function(ornament, data, A, X) {
   m <- brm(
     formula = f, data = data, data2 = list(A = A, X = X),
     prior = my_priors,
-    backend = 'cmdstanr', chains = 6, cores = 6, warmup = 1000, iter = 2500, threads = 1,
-    control = list(adapt_delta = 0.9, max_treedepth = 12),
+    backend = 'cmdstanr',
+    chains = 4, cores = 4, warmup = 1000, iter = 5000,
+    control = list(adapt_delta = 0.98, max_treedepth = 10),
     file = out_file, file_refit = 'on_change'
   )
 }
@@ -48,12 +49,14 @@ fit_ornament_hurdle <- function(ornament, data, A, X) {
 plan(multisession, workers = 7)
 future_walk(
   paste0('car_', 1:7),
-  fit_ornament_hurdle, data = d, A = pedA, X = pedX
+  fit_ornament_hurdle, data = d, A = pedA, X = pedX,
+  .options = furrr_options(seed = TRUE)
 )
 plan(sequential)
 
 if (FALSE) { # run interactively only
 
+  library(tidyverse)
   library(tidybayes)
   library(imager)
 

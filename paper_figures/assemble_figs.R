@@ -51,6 +51,10 @@ Fig4 <- (P_car_orn_img) /
   plot_layout(heights = c(0.8, 2, 2, 2, 3))
 ggsave('paper_figures/Fig4.png', Fig4, units = "cm", width = 18.4, height = 11)
 
+source('paper_figures/Fig5.R')
+ggsave('paper_figures/Fig5_unedited.png', Fig5, width = 19.2, height = 12, units = 'cm', dpi = 600)
+
+
 source('paper_figures/subplots/6A.R')
 source('paper_figures/subplots/6B.R')
 source('paper_figures/subplots/6C.R')
@@ -58,4 +62,4 @@ Fig6 <- (Fig6A + plot_annotation(tag_levels = c('A')) & theme(legend.position = 
   (Fig6B & theme(legend.position = 'none')) |
   (Fig6C)
 
-ggsave('paper_figures/Fig6.png', Fig6, units = 'cm', width = 18.4, height = 12)
+ggsave('paper_figures/Fig6_unlabeled.png', Fig6, units = 'cm', width = 18.4, height = 12)
