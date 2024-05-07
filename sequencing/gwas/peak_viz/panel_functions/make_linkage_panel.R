@@ -48,7 +48,7 @@ get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1) {
   done <- semi_join(prev, dat, join_by(chr, start, end, alt))
   to_do <- anti_join(dat, prev, join_by(chr, start, end, alt))
 
-  plan(multisession, workers = workers)
+  #plan(multisession, workers = workers)
   link <- to_do %>%
     group_by(chr, start, end, alt) %>%
     group_nest()
@@ -61,7 +61,7 @@ get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1) {
       \(x) safe_snp_sex_linkage_AIC(x, A_small, X_small),
       .options = furrr_options(seed = TRUE)
   )
-  plan(sequential)
+  #plan(sequential)
 
   link <- link %>%
     unnest(cols = out) %>%

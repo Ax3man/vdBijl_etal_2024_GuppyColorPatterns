@@ -47,13 +47,13 @@ run <- function(traits, name = traits, pval_column, overwrite = FALSE) {
       !(sampleNames %in% c('NS.2125.002.IDT_i7_111---IDT_i5_111.280', 'NS.2145.001.IDT_i7_89---IDT_i5_89.355'))
     )
   cat('\nLoaded genotypes...\n')
-  link <- get_linkage(geno, workers = 4, min_MAF = 0.1)
+  link <- get_linkage(geno, trait = traits, workers = 24, min_MAF = 0.1)
 
   data.table::fwrite(link, outfile)
 }
 
-run('car_PIE', pval_column = 'p_SHet')
-run('mel_PIE', pval_column = 'p_SHet')
-run(glue::glue('pa_car_{x}', x = 1:7), name = 'orange_ornaments', pval_column = 'p_lrt')
-run(glue::glue('pa_mel_{x}', x = 1:8), name = 'black_ornaments', pval_column = 'p_lrt')
+run('car_PIE', pval_column = 'p_SHet', overwrite = TRUE)
+run('mel_PIE', pval_column = 'p_SHet', overwrite = TRUE)
+#run(glue::glue('pa_car_{x}', x = 1:7), name = 'orange_ornaments', pval_column = 'p_lrt')
+#run(glue::glue('pa_mel_{x}', x = 1:8), name = 'black_ornaments', pval_column = 'p_lrt')
 

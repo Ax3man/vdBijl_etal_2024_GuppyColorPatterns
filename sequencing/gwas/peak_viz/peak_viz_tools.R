@@ -1,14 +1,18 @@
-get_gwas_results <- function(trait, chr, pos, viz_range, fdr.level, pval_column = 'p_SHet') {
+get_gwas_results <- function(trait, chr = NULL, pos, viz_range, fdr.level, pval_column = 'p_SHet') {
   gwas <- data.table::fread(glue::glue('sequencing/gwas/gemma_output/{trait}.assoc.txt'))
 
-  filter(
-    gwas,
-    .data$chr == .env$chr,
-    between(ps, viz_range[1], viz_range[2])
-  )
+  if (!is.null(chr)) {
+    gwas <- dplyr::filter(
+      gwas,
+      .data$chr == .env$chr,
+      between(ps, viz_range[1], viz_range[2])
+    )
+  }
+  return(gwas)
 }
 
 get_genotypes <- function(vcf, chr, range) {
+  require(VariantAnnotation)
   if (length(range) == 1) {
     regions <- GRanges(seqnames = chr, ranges = IRanges(start = range, width = 1))
   } else {
@@ -22,14 +26,55 @@ get_genotypes <- function(vcf, chr, range) {
 }
 
 get_phenotypes <- function(trait) {
-  data.table::fread(glue::glue('sequencing/kmer_gwas/config/phenotypes/{trait}.pheno')) %>%
+  require(dplyr)
+  if (trait %in% c('car_perc', 'mel_perc_v2')) {
+
+  } else {
+    data.table::fread(glue::glue('sequencing/kmer_gwas/config/phenotypes/{trait}.pheno')) %>%
       inner_join(
         get_sampling_structure() %>% dplyr::select(-sample_id),
         join_by(accession_id == fish_id)
       ) %>% dplyr::rename(fish_id = accession_id)
+  }
+}
+
+get_ornaments <- function() {
+  bind_rows(
+    read_rds('ornament_analysis/car_ornaments.rds'),
+    read_rds('ornament_analysis/mel_ornaments.rds')
+  ) %>%
+    pivot_wider(id_cols = unique_id, names_from = 'ornament', values_from = 'present_10') %>%
+    left_join(
+      data.table::fread('photo_database.csv') %>% dplyr::select(fish_id, unique_id, facing_direction),
+      join_by(unique_id)
+    ) %>%
+    group_by(fish_id, facing_direction) %>%
+    summarise(across(c(car_1:car_7, mel_1:mel_8), mean), .groups = 'drop_last') %>%
+    summarise(across(c(car_1:car_7, mel_1:mel_8), mean), .groups = 'drop') %>%
+    mutate(across(c(car_1:car_7, mel_1:mel_8), round)) %>%
+    right_join(get_sampling_structure(), join_by(fish_id))
+}
+
+get_phenotypes2 <- function() {
+  bind_rows(
+    read_rds('ornament_analysis/car_ornaments.rds'),
+    read_rds('ornament_analysis/mel_ornaments.rds')
+  ) %>%
+    pivot_wider(id_cols = unique_id, names_from = 'ornament', values_from = 'present_10') %>%
+    left_join(
+      data.table::fread('photo_database.csv') %>%
+        dplyr::select(fish_id, unique_id, facing_direction, car_perc, mel_perc_v2),
+      join_by(unique_id)
+    ) %>%
+    group_by(fish_id, facing_direction) %>%
+    summarise(across(c(car_1:car_7, mel_1:mel_8, car_perc, mel_perc_v2), mean), .groups = 'drop_last') %>%
+    summarise(across(c(car_1:car_7, mel_1:mel_8, car_perc, mel_perc_v2), mean), .groups = 'drop') %>%
+    mutate(across(c(car_1:car_7, mel_1:mel_8), round)) %>%
+    right_join(get_sampling_structure(), join_by(fish_id))
 }
 
 get_sampling_structure <- function() {
+  require(dplyr)
   sampling1 <- data.table::fread('sequencing/sample_lists/DNA_WGS_300samples_long_list.csv')
   sampling2 <- data.table::fread('data/NovaSeq_sample_list.csv') %>%
     dplyr::select(sample_id = Name, sample_name = `Filename Prefix`)
@@ -70,6 +115,7 @@ get_snp_effect_heatmap <- function(trait, chr, pos) {
 }
 
 get_region_coverage <- function(chr, pos, viz_range) {
+  require(tidyverse)
   f <- list.files('sequencing/coverage_gwas_intervals', f = TRUE) %>%
     str_subset(chr)
   d <- map_dfr(f, data.table::fread)
@@ -100,23 +146,6 @@ get_GRM <- function(vcf = 'sequencing/gwas/filtered.vcf.gz') {
 
   to_drop <- c('NS.2125.002.IDT_i7_111---IDT_i5_111.280', 'NS.2145.001.IDT_i7_89---IDT_i5_89.355')
   GRM[!(sample_names %in% to_drop), !(sample_names %in% to_drop)]
-}
-
-get_ornaments <- function() {
-  bind_rows(
-    read_rds('ornament_analysis/car_ornaments.rds'),
-    read_rds('ornament_analysis/mel_ornaments.rds')
-  ) %>%
-    pivot_wider(id_cols = unique_id, names_from = 'ornament', values_from = 'present_10') %>%
-    left_join(
-      data.table::fread('photo_database.csv') %>% dplyr::select(fish_id, unique_id, facing_direction),
-      join_by(unique_id)
-    ) %>%
-    group_by(fish_id, facing_direction) %>%
-    summarise(across(c(car_1:car_7, mel_1:mel_8), mean), .groups = 'drop_last') %>%
-    summarise(across(c(car_1:car_7, mel_1:mel_8), mean), .groups = 'drop') %>%
-    mutate(across(c(car_1:car_7, mel_1:mel_8), round)) %>%
-    right_join(get_sampling_structure(), join_by(fish_id))
 }
 
 # yuying parents
