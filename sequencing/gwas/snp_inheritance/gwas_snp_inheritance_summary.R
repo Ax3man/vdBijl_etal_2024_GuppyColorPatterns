@@ -1,7 +1,9 @@
 library(tidyverse)
 
-make_summary <- function(file) {
-  snp_inheritance <- data.table::fread(file) %>%
+make_summary <- function(file = NULL, df = NULL) {
+  if (!is.null(file)) df <- data.table::fread(file)
+
+  snp_inheritance <- df %>%
     group_by(chr, start, end, alt) %>%
     slice_max(AIC_weight, with_ties = FALSE) %>%
     ungroup() %>%
@@ -34,8 +36,8 @@ make_summary('sequencing/gwas/snp_inheritance/gwas_snp_inheritance/mel_PIE.csv')
 
 # compare to the NULL set
 make_summary('sequencing/gwas/snp_inheritance/gwas_snp_inheritance_NULL.csv')
-# Autosomes: (6 + 3) = 9 out of 947 called variants are sex-linked or, 0.95%
-#            3 out of 947 called variants are Y-linked or, 0.32%
+# (6 + 3) = 9 out of 947 called variants are sex-linked or, 0.95%
+#           3 out of 947 called variants are Y-linked or, 0.32%
 
 
 # and the random set from LG12:

@@ -17,7 +17,7 @@ run <- function(traits, name = traits, pval_column, overwrite = FALSE) {
     return(invisible(NULL))
   }
 
-  # Load GWAS results
+  cat('Loading GWAS results...\n')
   if (length(traits) == 1) {
     g <- prep_gwas_table(traits, FALSE, pval_column, fdr_level = 0.05) %>%
       filter(significant)
@@ -37,6 +37,7 @@ run <- function(traits, name = traits, pval_column, overwrite = FALSE) {
       distinct()
   }
 
+  cat('Loading genotypes from VCF...\n')
   regions <- GRanges(
     seqnames = g$chr,
     ranges = IRanges(start = g$ps, end = g$ps)
@@ -46,8 +47,8 @@ run <- function(traits, name = traits, pval_column, overwrite = FALSE) {
     filter(
       !(sampleNames %in% c('NS.2125.002.IDT_i7_111---IDT_i5_111.280', 'NS.2145.001.IDT_i7_89---IDT_i5_89.355'))
     )
-  cat('\nLoaded genotypes...\n')
-  link <- get_linkage(geno, trait = traits, workers = 24, min_MAF = 0.1)
+  cat('Estimating linkage...\n')
+  link <- get_linkage(geno, trait = traits, workers = 4, min_MAF = 0.1)
 
   data.table::fwrite(link, outfile)
 }

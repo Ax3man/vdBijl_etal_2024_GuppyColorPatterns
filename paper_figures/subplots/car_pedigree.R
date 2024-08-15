@@ -23,12 +23,12 @@ P_car_pedigree <- ggplot(pd, aes(x = car_perc, y = generation, color = selection
     geom_hline(yintercept = 1:4, col = 'black', linewidth = 0.2) +
     ggridges::geom_density_ridges(
       data = filter(pd, generation == 'P'),
-      fill = 1, alpha = 0.5, color = 'black', panel_scaling = FALSE, scale = 3, size = 0.25,
+      fill = 1, alpha = 0.5, color = 'black', panel_scaling = FALSE, scale = 3, linewidth = 0.25,
       quantile_lines = TRUE, quantiles = 0.5
     ) +
     ggridges::geom_density_ridges(
       aes(fill = selection, group = interaction(selection, generation)), filter(pd, generation != 'P'),
-      alpha = 0.5, color = 'black', panel_scaling = FALSE, scale = .6, size = 0.25,
+      alpha = 0.5, color = 'black', panel_scaling = FALSE, scale = .6, linewidth = 0.25,
       quantile_lines = TRUE, quantiles = 0.5
     ) +
     geom_segment(aes(xend = sire_car_perc, yend = sire_generation), alpha = 0.1, linewidth = 0.15) +

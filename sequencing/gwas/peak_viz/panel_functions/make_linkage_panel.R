@@ -20,18 +20,31 @@ safe_snp_sex_linkage_AIC <- \(d, a, x) {
   purrr::safely(snp_sex_linkage_AIC, otherwise = data.frame())(d, a, x)$result
 }
 
-get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1) {
-  require(furrr)
+get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1, reference = 'female', use_previous = TRUE) {
+  suppressPackageStartupMessages(require(furrr))
 
   workers <- pmin(parallelly::availableCores(logical = FALSE) - 1, workers)
 
-  sampling <- get_sampling_structure()
+  cat('Preparing data...\n')
+
   source('quant_gen/prepare_pedigrees.R')
+  sampling <- get_sampling_structure() |> add_patriline(ped_df)
   A_small <- A[sampling$fish_id, sampling$fish_id]
   X_small <- X[sampling$fish_id, sampling$fish_id]
 
   # load previous results (only significant variants)
-  prev <- data.table::fread(glue::glue('sequencing/gwas/snp_inheritance/gwas_snp_inheritance/{trait}.csv'))
+  if (use_previous) {
+    if (reference == 'female') {
+      prev_file <- glue::glue('sequencing/gwas/snp_inheritance/gwas_snp_inheritance/{trait}.csv')
+    } else {
+      prev_file <- glue::glue('sequencing/male_reference_gwas/snp_inheritance/gwas_snp_inheritance/{trait}.csv')
+    }
+    if (file.exists(prev_file)) {
+      prev <- data.table::fread(prev_file)
+    } else {
+      prev <- data.frame(chr = character(), start = integer(), end = integer(), alt = character())
+    }
+  }
 
   dat <- geno %>%
     as.data.frame() %>%
@@ -39,16 +52,20 @@ get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1) {
     filter(MAF >= min_MAF) %>%
     dplyr::select(chr = seqnames, start, end, alt, sampleNames, GT) %>%
     inner_join(sampling, join_by(sampleNames == sample_name)) %>%
-    add_patriline(ped_df) %>%
     mutate(
       dose = case_when(GT == '0/0' ~ 0, GT == '0/1' ~ 1, GT == '1/0' ~ 1, GT == '1/1' ~ 2, TRUE ~ NA_integer_),
       fish_idX = fish_id
     )
 
-  done <- semi_join(prev, dat, join_by(chr, start, end, alt))
-  to_do <- anti_join(dat, prev, join_by(chr, start, end, alt))
+  if (use_previous) {
+    done <- semi_join(prev, dat, join_by(chr, start, end, alt))
+    to_do <- anti_join(dat, prev, join_by(chr, start, end, alt))
+  } else {
+    to_do <- dat
+  }
 
-  #plan(multisession, workers = workers)
+  cat('Fitting models...\n')
+  if (workers > 1) plan(multisession, workers = workers)
   link <- to_do %>%
     group_by(chr, start, end, alt) %>%
     group_nest()
@@ -59,15 +76,22 @@ get_linkage <- function(geno, trait, workers = 25, min_MAF = 0.1) {
   link$out <- future_map(
       link$data,
       \(x) safe_snp_sex_linkage_AIC(x, A_small, X_small),
-      .options = furrr_options(seed = TRUE)
+      .options = furrr_options(
+        seed = TRUE,
+        globals = c('A_small', 'X_small', 'safe_snp_sex_linkage_AIC', 'snp_sex_linkage_AIC')
+      )
   )
-  #plan(sequential)
+  if (workers > 1) plan(sequential)
 
+  cat('Post-processing...\n')
   link <- link %>%
     unnest(cols = out) %>%
-    dplyr::select(-data) %>%
-    bind_rows(done)
+    dplyr::select(-data)
 
+  if (use_previous) {
+    link <- bind_rows(link, done)
+  }
+  cat('Done!\n')
   return(link)
 }
 

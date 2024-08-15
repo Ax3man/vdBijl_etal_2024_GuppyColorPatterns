@@ -1,17 +1,28 @@
-make_gene_panel <- function(chr, range) {
+make_gene_panel <- function(chr, range, reference) {
   require(gggenes)
+  require(VariantAnnotation)
 
-  regions <- GRanges(seqnames = chr, ranges = IRanges(start = range[1], width = diff(range)))
-  ann <- import('sequencing/GCF_000633615.1_Guppy_female_1.0_MT_genomic.gff.gz', which = regions) %>%
-    as.data.frame()
+  if (reference == 'female') {
+    regions <- GRanges(seqnames = chr, ranges = IRanges(start = range[1], width = diff(range)))
+    ann <- import('sequencing/GCF_000633615.1_Guppy_female_1.0_MT_genomic.gff.gz', which = regions) %>%
+      as.data.frame()
 
-  genes <- ann %>% filter(type == 'gene')
-  exons <- ann %>% filter(type == 'exon') %>%
-    dplyr::select(substart = start, subend = end, gene) %>%
-    left_join(dplyr::select(genes, start, end, gene, strand), 'gene')
-
-  genes$gene <- ifelse(genes$gene == 'LOC103476393', 'texim', genes$gene)
-  exons$gene <- ifelse(exons$gene == 'LOC103476393', 'texim', exons$gene)
+    genes <- ann %>% filter(type == 'gene')
+    exons <- ann %>% filter(type == 'exon') %>%
+      dplyr::select(substart = start, subend = end, gene) %>%
+      left_join(dplyr::select(genes, start, end, gene, strand), 'gene')
+    genes$gene <- ifelse(genes$gene == 'LOC103476393', 'texim', genes$gene)
+    exons$gene <- ifelse(exons$gene == 'LOC103476393', 'texim', exons$gene)
+  } else {
+    regions <- GRanges(seqnames = paste0('chr', chr), ranges = IRanges(start = range[1], width = diff(range)))
+    ann <- import('sequencing/PRET-male-geneID.annotations.gff3', which = regions) %>%
+      as.data.frame()
+    genes <- ann %>% filter(type == 'gene') %>% rename(gene = Name)
+    exons <- ann %>% filter(type == 'exon') %>%
+      dplyr::select(substart = start, subend = end, gene = Parent) %>%
+      mutate(gene = str_split_i(gene, '\\.', 1)) |>
+      left_join(dplyr::select(genes, start, end, gene, strand), 'gene')
+  }
 
   if (nrow(genes) == 0) {
     p <- ggplot() + theme_void()

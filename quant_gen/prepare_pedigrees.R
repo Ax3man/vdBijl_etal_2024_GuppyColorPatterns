@@ -1,5 +1,7 @@
-library(nadiv)
-library(tidyverse)
+suppressPackageStartupMessages({
+  library(nadiv)
+  library(tidyverse)
+})
 
 add_patriline <- function(data, pedigree) {
   # Create new column with the patriline, empty for now

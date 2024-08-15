@@ -1,3 +1,4 @@
+library(tidyverse)
 library(patchwork)
 library(ggtext)
 source('sequencing/gwas/peak_viz/peak_viz_continuous.R')
@@ -8,7 +9,7 @@ if (!file.exists('paper_figures/subplots/6A_unadjusted.rds')) {
     trait = 'car_PIE',
     ornament = 'car_6',
     chr = 'NC_024344.1',
-    pos = 26587331,
+    pos = 26587645,
 
     include_kmers = TRUE,
     file = NULL,
@@ -39,41 +40,28 @@ panel_A[[1]]$layers[[2]]$geom_params$arrowhead_width <- unit(2, 'mm')
 panel_A[[1]]$layers[[2]]$geom_params$arrowhead_height <- unit(3.5, 'mm')
 panel_A[[1]]$layers[[3]]$aes_params$size <- 2
 
-panel_A[[2]]$layers[[1]] <- NULL
+panel_A[[2]]$layers[[1]]$aes_params$linewidth <- 0.2
+panel_A[[2]]$layers[[1]]$aes_params$alpha <- 0.05
+panel_A[[2]]$layers[[2]]$aes_params$linewidth <- 0.4
 
-panel_A[[3]]$scales$scales[[2]]$name <- 'Significant 31-mers'
-
-panel_A[[4]]$layers[[1]]$aes_params$linewidth <- 0.2
-panel_A[[4]]$layers[[1]]$aes_params$alpha <- 0.05
-panel_A[[4]]$layers[[2]]$aes_params$linewidth <- 0.4
-
-panel_A[[6]][[1]] <- panel_A[[6]][[1]] +
-  facet_wrap(vars("<img src='ornament_analysis/ornament_figure_labels/car_6.png' width='40' />")) +
-  theme(strip.text = element_markdown(), strip.background = eb)
-tmp <- panel_A[[6]][[1]]
-panel_A[[6]][[1]] <- panel_A[[6]][[2]] + labs(x = 'Genotype at\ntop variant')#, tag = 'D')
-panel_A[[6]][[1]]$scales$scales[[1]]$name <- 'Est. allele count'
-panel_A[[6]][[1]]$scales$scales[[2]]$name <- 'Allele'
-
-panel_A[[6]][[2]] <- tmp + labs(x = 'Genotype at\ntop variant', y = 'Count')#, tag = 'E')
-panel_A[[6]][[2]]$scales$scales[[1]]$name <- 'Ornament'
-
+panel_A[[5]][[1]]$layers[[2]]$aes_params$size <- 2
 
 Fig6A <- wrap_plots(
   panel_A[[1]] + new_x + coord,# + labs(tag = 'A') + theme(text = element_text(size = 7)),
-  panel_A[[4]] + new_x + coord + labs(y = 'Relative coverage') + #, tag = 'B') +
+  panel_A[[2]] + new_x + coord + labs(y = 'Relative coverage') + #, tag = 'B') +
     theme(axis.text.x = eb, axis.line.x = eb, axis.ticks.x = eb, axis.title.x = eb),
-  #panel_A[[3]] + new_x + coord,
-  panel_A[[2]] + new_x + coord +
-    geom_point(size = 0.6) +
+  panel_A[[3]] + new_x + coord +
+    geom_point(size = 0.6, show.legend = TRUE) +
     annotate(
-      x = 26587331, y = -log10(panel_A[[2]]$data$p_SHet[panel_A[[2]]$data$ps == 26587331]),
+      x = 26587645, y = -log10(panel_A[[3]]$data$p_SHet[panel_A[[3]]$data$ps == 26587645]),
       geom = 'point', shape = 1, color = 'red', size = 2, stroke = 0.6
-    ),# +
+    ) +
+    theme(axis.text.x = eb, axis.line.x = eb, axis.ticks.x = eb, axis.title.x = eb),# +
     #labs(tag = 'C'),
-  panel_A[[6]],
-  snp_effects[[3]],
-  ncol = 1, heights = c(2, 3, 3, 3, 3)
+  panel_A[[4]] + new_x + coord,
+  panel_A[[5]],
+  snp_effects[["NC_024344.1/26587645/26587645/C"]],
+  ncol = 1, heights = c(2, 3, 3, 3, 3, 3)
 )
 
 

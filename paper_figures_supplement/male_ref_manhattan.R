@@ -17,35 +17,35 @@ col_scale <- scale_color_manual(
   guide = guide_legend(override.aes = list(size = 1.5))
 )
 
-orange_pattern <- make_manhattan_new('car_PIE', 'p_SHet') +
+orange_pattern <- make_manhattan_new('car_PIE', 'p_SHet', reference = 'male') +
   theme(legend.position = 'top', strip.text = element_blank()) +
   labs(tag = 'A') +
   facet_wrap(~1, scales = 'free', ncol = 1) +
   col_scale
 
-black_pattern <- make_manhattan_new('mel_PIE', 'p_SHet') +
+black_pattern <- make_manhattan_new('mel_PIE', 'p_SHet', reference = 'male') +
   theme(legend.position = 'top', strip.text = element_blank()) +
   labs(y = NULL) +
   guides(color = 'none') +
-  col_scale +
-  facet_wrap(~1, scales = 'free', ncol = 1)
+  facet_wrap(~1, scales = 'free', ncol = 1) +
+  col_scale
 
 # It is important to load all 7 ornaments, so that the q-values are computed over the full set
 orange_ornaments <- manhattan_set(
-  traits = paste0('pa_car_', 1:7), name = 'orange_ornaments', pval_column = 'p_lrt',
+  traits = paste0('pa_car_', 1:7), reference = 'male', name = 'orange_ornaments', pval_column = 'p_lrt',
   joined_qvalue = TRUE, fdr_level = 0.05, return_plot_object = TRUE
-) + facet_wrap(vars(trait_label), scales = 'free', ncol = 1)
+) + facet_wrap(vars(trait_label), ncol = 1, scales = 'free')
 # then filter down to the selected ornaments by subsetting the plot data
 orange_ornaments <- orange_ornaments %+% (
   dplyr::filter(orange_ornaments$data, trait %in% paste0('pa_car_', c(1, 5, 6))) %>%
     mutate(trait_label = factor(trait_label, levels = sort(unique(trait_label))[c(2, 1, 3)]))
 ) + labs(tag = 'B') +
-  theme(legend.position = 'none', strip.background.y = element_blank())
+  theme(legend.position = 'none', strip.background.y = element_blank(), strip.text.y = element_blank())
 
 black_ornaments <- manhattan_set(
-  traits = paste0('pa_mel_', 1:8), name = 'black_ornaments', pval_column = 'p_lrt',
+  traits = paste0('pa_mel_', 1:8), reference = 'male', name = 'black_ornaments', pval_column = 'p_lrt',
   joined_qvalue = TRUE, fdr_level = 0.05, return_plot_object = TRUE
-) + facet_wrap(vars(trait_label), scales = 'free', ncol = 1)
+) + facet_wrap(vars(trait_label), ncol = 1, scales = 'free')
 black_ornaments <- black_ornaments %+%
   dplyr::filter(black_ornaments$data, trait %in% paste0('pa_mel_', c(1, 5, 8))) +
   theme(legend.position = 'none') +
@@ -58,4 +58,9 @@ panelB <- (
   (orange_ornaments | black_ornaments)
 )
 
-Fig5 <- (panelA / panelB) + plot_layout(heights = c(1, 2))
+male_ref_manhattan <- (panelA / panelB) + plot_layout(heights = c(1, 2))
+
+ggsave(
+  'paper_figures_supplement/male_ref_manhattan.png', male_ref_manhattan,
+  width = 18.4, height = 12, units = 'cm', dpi = 600
+)

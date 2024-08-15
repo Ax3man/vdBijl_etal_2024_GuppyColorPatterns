@@ -67,16 +67,25 @@ SNP_vs_traits <- function(
   return(list(p1, p2))
 }
 
-make_ornament_panel <- function(ornament, geno, chr, pos) {
+make_ornament_panel <- function(ornament, geno, chr, pos, reference = 'female') {
+  if (reference == 'male') chr <- paste0('chr', chr)
+
   orn <- get_ornaments()
 
   geno %>%
     dplyr::filter(.data$seqnames == .env$chr, .data$start == .env$pos) %>%
     full_join(orn, join_by(sampleNames == sample_name)) %>%
+    mutate(GT = factor(
+      str_replace_all(GT, '0', ref) %>% str_replace_all('1', alt),
+      map_chr(c('{r}/{r}', '{r}/{a}', '{a}/{a}'), \(x) glue::glue(x, r = ref[1], a = alt[1])),
+    )) %>%
     ggplot(aes(GT, fill = .data[[ornament]] == 1)) +
     geom_bar() +
-    scale_fill_manual(values = c('TRUE' = 'darkorange', 'FALSE' = 'grey'), name = NULL,
+    scale_fill_manual(values = c('TRUE' = 'darkorange', 'FALSE' = 'grey'), name = 'Ornament',
                       labels = c('TRUE' = 'present', 'FALSE' = 'absent')) +
     scale_y_continuous(expand = c(0, 0)) +
-    labs(x = 'genotype', y = 'count')
+    scale_x_discrete(drop = FALSE) +
+    labs(x = 'Genotype at\ntop variant', y = 'Number of males') +
+    facet_wrap(vars(glue::glue("<img src='ornament_analysis/ornament_figure_labels/{ornament}.png' width='40' />"))) +
+    theme(strip.text = ggtext::element_markdown(), strip.background = element_blank())
 }
