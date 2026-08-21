@@ -7,6 +7,8 @@ This is the code repository that goes with the following [paper](https://doi.org
 > Wouter van der Bijl, Jacelyn Shu, Versara S. Goberdhan, Linley Sherin, Changfu Jia, Maria Cortazar-Chinarro, Alberto Corral-Lopez, Judith E. Mank.
 > 
 > Deep learning reveals the complex genetic architecture of male guppy colouration
+>
+> Nature Ecology & Evolution 9, pages 1614–1625 (2025)
 
 ![animation](color_patterns.gif)
 
