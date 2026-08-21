@@ -2,11 +2,11 @@
 
 # vdBijl_etal_2025_GuppyColorPatterns
 
-This is the code repository that goes with the following [preprint](https://doi.org/10.1101/2023.09.29.560175):
+This is the code repository that goes with the following [paper](https://doi.org/10.1038/s41559-025-02781-w):
 
 > Wouter van der Bijl, Jacelyn Shu, Versara S. Goberdhan, Linley Sherin, Changfu Jia, Maria Cortazar-Chinarro, Alberto Corral-Lopez, Judith E. Mank.
 > 
-> Deep learning reveals the complex genetic architecture of a highly polymorphic sexual trait.
+> Deep learning reveals the complex genetic architecture of male guppy colouration
 
 ![animation](color_patterns.gif)
 
